@@ -20,6 +20,7 @@ const upload = multer({storage: storage}).single('avatar');
 
 //homepage
 app.set("view engine", "ejs");
+app.use('/public', express.static('public'));
 app.get('/',(req,res)=>{
    res.render('index')
 });
@@ -31,12 +32,12 @@ app.get('/loading',(req,res)=>{
     res.render('F1040EZ')
  });
  
- app.get('/download', function(req, res){
+ app.get('/download', (req, res)=>{
     const file = "./views/F1040EZ.ejs";
     res.download(file, 'F1040EZ.json'); // Set disposition and send it.
   });
 
-app.post('/upload',(req,res)=>{
+  app.post('/upload',(req,res)=>{
     upload(req,res,res => {
         console.log(req.file.originalname);     
         let pdfParser = new PDFParser(this,1);

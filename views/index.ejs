@@ -5,14 +5,30 @@
         <meta name="viewport" content="width=device-width",initial-scale="1.0">
         <title>Document</title>
         <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-        <link type="text/css" href ="css/normalize.css">
-        <link type="text/css" href="css/skeleton.css">   
+        <link href= "/public/assets/normalize.css" rel="stylesheet" type="text/css" /> 
+        <link href= "/public/assets/skeleton.css" rel="stylesheet" type="text/css" /> 
+    
     </head>
     <body>
-        <h1>Brand Standards</h1>
+        <a href = "/">
+            <h1>Jol</h1>
+        </a>
         <form action="/upload" method="POST" enctype="multipart/form-data" >
-            <input type="file" name="avatar" />
+            <input type="file" name="avatar" id = "file" />
             <button class="button button-primary" type="submit">Magic</button>
         </form>
+        <script type="text/javascript">
+            var button = document.querySelector('button[type=submit]');
+            button.disabled = true;
+            document.getElementById('file').addEventListener('change',function(){
+                if(this.value.length > 0){
+                    button.disabled = false;
+                }
+                else{
+                    button.disabled = true;
+                    alert('Select a file');
+                }
+            });
+        </script>
     </body>
 </html>
